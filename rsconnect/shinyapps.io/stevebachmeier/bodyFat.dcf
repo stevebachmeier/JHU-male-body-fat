@@ -1,0 +1,12 @@
+name: bodyFat
+title: bodyFat
+username:
+account: stevebachmeier
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 443205
+bundleId: 1584767
+url: https://stevebachmeier.shinyapps.io/bodyFat/
+when: 1536882530.11628
+asMultiple: FALSE
+asStatic: FALSE

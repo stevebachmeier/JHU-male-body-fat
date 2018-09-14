@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536876308636.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3118320488",
+    "id" : "99F496CA",
+    "lastKnownWriteTime" : 1536881351,
+    "last_content_update" : 1536881351872,
+    "path" : "~/Development/Data Science/Data Science Specialization - JHU/09 Developing Data Products/Project/bodyFat/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "cursorPosition" : "15,33",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

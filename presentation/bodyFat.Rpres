@@ -1,0 +1,93 @@
+Male Body Fat Calculator Using the Jackson-Pollock 3-fold Method
+========================================================
+author: Steve Bachmeier
+date: September 13, 2018
+autosize: true
+
+Background
+========================================================
+
+<small>In recent years there has been a significant increase in the amount of health-related data available to users. Fitbits, heartrate monitors, smart scales, etc are now low cost and easily found online and in stores. Further, apps that track health like Google Fit provide users with loads of data and they attempt to make sense of it.
+
+Unfortunately, one area that still is not calculated accurately using sensors and apps is body fat percentage. This is, literally, the percentage of your overall mass that is made up by body fat. While there are low-cost smart scales that use electrical resistance to approximate it and high-cost testing (eg submersion) that can get better results, one method that is  often overlooked is by measuring skin folds using body fat calipers.</small>
+
+```{r fig.width=5, fig.height=5,echo=FALSE}
+library(jpeg)
+library(grid)
+img <- readJPEG("body-fat-calipers.jpg")
+ grid.raster(img)
+```
+
+<small>Reference: https://www.bodybuilding.com/content/how-to-measure-your-body-fat.html</small>
+
+Motivation
+========================================================
+
+<small>Using a low cost set of body fat calipers, body fat percentage for men can be easily calculated using the Jackson-Pollock 3-fold method. 
+
+Reference: Generalized equations for predicting body density of men, Jackson, A.S. and Pollock, M.L., Accepted 28 February 1978, British Journal of Nutrition.
+
+The equation outlined in their research is simple:
+
+Body Density = 1.10938 - <br>
+(0.0008267 * Skinfold Sum) + <br>
+(0.0000016 * square of Skinfold Sum) - <br>
+(0.0002574 * Age)
+
+Body Fat (%) = (495 / Body Density) - 450 
+
+**While this is a simple equation, nobody wants to do the math every time!**</small>
+
+
+Solution
+========================================================
+
+<small>We've created a clean and simple-to-use solution for solving the ugly Jackson-Pollock 3-fold method for calculating body fat percentage in males. Our app is hosted online and can be accessed from anywhere - all the user must do is take the relevant measurments, input the data, and click submit! The app will do the rest and provide the estimated body fat percentage as well as a dynamic plot of body fat over time.
+
+https://stevebachmeier.shinyapps.io/bodyFat/</small>
+
+![](demo-site.jpg)
+
+Example
+========================================================
+
+```{r, echo=F}
+bodyfat <- data.frame(date=as.Date(c("2017-08-01", "2017-09-01", "2017-10-01", "2017-11-01", "2017-12-01")), 
+                      bodyfat=c(13.0, 13.1, 12.6, 12.5, 13.4))
+```
+
+```{r, echo=F}
+age <- 33.9
+userInput <- data.frame(date="2018-01-01",
+                        pinchChest=c(10, 10, 10),
+                        pinchAbs=c(44 ,38, 40),
+                        pinchThigh=c(14, 14, 15))
+
+pinchChestAve <- mean(userInput$pinchChest)
+pinchAbsAve <- mean(userInput$pinchAbs)
+pinchThighAve <- mean(userInput$pinchThigh)
+
+pinchSum <- sum(pinchChestAve, pinchAbsAve, pinchThighAve)
+
+bd <- 1.10938 - (0.0008267*pinchSum) + (0.0000016 * pinchSum^2) - (0.0002574*age)
+
+bf <- (495 / bd) - 450
+
+bodyfat <- rbind(bodyfat, c("2018-01-01", round(bf,1)))
+```
+
+<small>Let's say a user has been tracking his body fat for a few months. On January first, he inputs his new measurements:</small>
+
+```{r, echo=F}
+with(userInput, data.frame(date=date[1], 
+                           c1=pinchChest[1], a1=pinchAbs[1], t1=pinchThigh[1],
+                           c2=pinchChest[2], a2=pinchAbs[2], t2=pinchThigh[2],
+                           c3=pinchChest[3], a3=pinchAbs[3], t3=pinchThigh[3]))
+```
+
+```{r, echo=F}
+plot(as.Date(bodyfat[,1]), bodyfat[,2])
+lines(as.Date(bodyfat[,1]), bodyfat[,2])
+```
+
+<small>Uh oh, it looks like the holiday season did some damage!</small>

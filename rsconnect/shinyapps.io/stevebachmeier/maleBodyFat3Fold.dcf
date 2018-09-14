@@ -1,0 +1,13 @@
+name: maleBodyFat3Fold
+title: maleBodyFat3Fold
+username:
+account: stevebachmeier
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 445979
+bundleId: 1585924
+url: https://stevebachmeier.shinyapps.io/maleBodyFat3Fold/
+when: 1536941230.27609
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: presentation
