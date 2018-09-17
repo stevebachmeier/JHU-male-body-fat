@@ -70,7 +70,9 @@ shinyUI(fluidPage(
                              column(width=9,
                                     h3("Body fat chart:"),
                                     plotOutput("plot1", width="100%"))),
-                           h4("Source files: ", a("https://github.com/stevebachmeier/maleBodyFatShinyApp", href="https://github.com/stevebachmeier/maleBodyFatShinyApp"))),
+                           h4("Source files: ", a("https://github.com/stevebachmeier/maleBodyFatShinyApp", 
+                                                  href="https://github.com/stevebachmeier/maleBodyFatShinyApp",
+                                                  target="blank"))),
                   
                   tabPanel("Help", 
                            h3("Background"),
