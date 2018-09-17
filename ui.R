@@ -7,51 +7,72 @@ shinyUI(fluidPage(
   # Sidebar
   sidebarLayout(
     sidebarPanel(
-      h3("User inputs"),
-      dateInput(inputId="dob", label="DOB:", value="1980-01-01",
-                min="1900-01-01", max=Sys.Date(), weekstart=0),
-      dateInput(inputId="date", label="Date:", value=Sys.Date(),
-                min="1900-01-01", max=Sys.Date(), weekstart=0),
-      numericInput(inputId="cPinch1", label="Chest measurement 1 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="aPinch1", label="Abdominal measurement 1 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="tPinch1", label="Thigh measurement 1 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="cPinch2", label="Chest measurement 2 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="aPinch2", label="Abdominal measurement 2 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="tPinch2", label="Thigh measurement 2 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="cPinch3", label="Chest measurement 3 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="aPinch3", label="Abdominal measurement 3 (mm):", value=100,
-                   min=0, max=100),
-      numericInput(inputId="tPinch3", label="Thigh measurement 3 (mm):", value=100,
-                   min=0, max=100),
-      actionButton("Submit", ("Submit"))
+      h4("User input:"),
+      
+      # Dates
+      fluidRow(
+        column(width=6,
+               dateInput(inputId="dob", label="DOB:", value="1984-02-21")),
+        column(width=6,
+               dateInput(inputId="date", label="Date:", value=Sys.Date(), max=Sys.Date()))),
+      
+      # Measurements 1
+      fluidRow(h5("Measurements 1 (mm)"),
+               column(width=4,
+                      numericInput(inputId="cPinch1", label="Chest:", 
+                                   value=100, min=0, max=100)),
+               column(width=4,
+                      numericInput(inputId="aPinch1", label="Abdomen:", 
+                                   value=100, min=0, max=100)),
+               column(width=4,
+                      numericInput(inputId="tPinch1", label="Thigh:", 
+                                   value=100, min=0, max=100))),
+      
+      # Measurements 2
+      fluidRow(h5("Measurements 2 (mm)"),
+               column(width=4,
+                      numericInput(inputId="cPinch2", label="Chest:", 
+                                   value=100, min=0, max=100)),
+               column(width=4,
+                      numericInput(inputId="aPinch2", label="Abdomen:", 
+                                   value=100, min=0, max=100)),
+               column(width=4,
+                      numericInput(inputId="tPinch2", label="Thigh:", 
+                                   value=100, min=0, max=100))),
+      
+      # Measurements 3
+      fluidRow(h5("Measurements 3 (mm)"),
+               column(width=4,
+                      numericInput(inputId="cPinch3", label="Chest:", 
+                                   value=100, min=0, max=100)),
+               column(width=4,
+                      numericInput(inputId="aPinch3", label="Abdomen:", 
+                                   value=100, min=0, max=100)),
+               column(width=4,
+                      numericInput(inputId="tPinch3", label="Thigh:", 
+                                   value=100, min=0, max=100))),
+
+      actionButton("Submit", ("Submit"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
     ),
     
     # Main panel
     mainPanel(
       tabsetPanel(type="tabs",
-                  tabPanel("Results", br(), 
+                  tabPanel("Results", 
                            fluidRow(
                              column(width=3, 
                                     h3("Current results:"),
-                                    p("Check this before clicking 'Submit'!"),
                                     textOutput("age"),
                                     textOutput("bodyfat"),
                                     br(),
                                     h3("Recent values:"),
-                                    p("This shows the previous 5 inputs submitted."),
                                     tableOutput("dataframe")),
                              column(width=9,
-                                    h3("Plot"),
-                                    plotOutput("plot1", width="100%")))),
+                                    h3("Body fat chart:"),
+                                    plotOutput("plot1", width="100%"))),
+                           h4("Source files: ", a("https://github.com/stevebachmeier/maleBodyFatShinyApp", href="https://github.com/stevebachmeier/maleBodyFatShinyApp"))),
                   
-                  tabPanel("Help", br(), 
+                  tabPanel("Help", 
                            h3("Background"),
                            p("This app takes user age and skin fold thickness 
                              data to approximate body fat percentage. It applies 

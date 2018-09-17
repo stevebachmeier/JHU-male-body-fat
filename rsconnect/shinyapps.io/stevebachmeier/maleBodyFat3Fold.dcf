@@ -5,9 +5,9 @@ account: stevebachmeier
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 445979
-bundleId: 1585924
+bundleId: 1590325
 url: https://stevebachmeier.shinyapps.io/maleBodyFat3Fold/
-when: 1536941230.27609
+when: 1537213406.7518
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: presentation
+ignoredFiles: README.md|presentation

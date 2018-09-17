@@ -1,4 +1,5 @@
 library(shiny)
+library(ggplot2)
 
 shinyServer(function(input, output) {
   
@@ -46,14 +47,20 @@ shinyServer(function(input, output) {
   
   # ---- OUTPUTS ----
   output$age <- renderText({
-    paste0("    Age: ", round(age(), 1), "years")
+    paste0("    Age: ", round(age(), 1), " years")
     })
   output$bodyfat <- renderText({
     paste0("    Body fat: ", round(bodyFat(), 1), "%")
   })
   output$dataframe <- renderTable({tail(values$df, 5)}, include.rownames=F)
   output$plot1 <- renderPlot({
-    plot(as.Date({values$df}[,1]), as.numeric({values$df}[,2]), xlab="Date", ylab="Body fat (%)")
-    lines(as.Date({values$df}[,1])[order(as.Date({values$df}[,1]))], as.numeric({values$df}[,2])[order(as.Date({values$df}[,1]))])
+    ggplot(data=data.frame(date=as.Date({values$df}[,1]), bodyfat=as.numeric({values$df}[,2])), 
+           aes(date, bodyfat)) +
+      geom_point() + 
+      geom_line() +
+      xlab("Date") + ylab("Body fat (%)")
+    
+#    plot(as.Date({values$df}[,1]), as.numeric({values$df}[,2]), xlab="Date", ylab="Body fat (%)")
+#    lines(as.Date({values$df}[,1])[order(as.Date({values$df}[,1]))], as.numeric({values$df}[,2])[order(as.Date({values$df}[,1]))])
   })
 })
