@@ -39,7 +39,7 @@ Solution
 
 <small>We've created a clean and simple-to-use solution for solving the ugly Jackson-Pollock 3-fold method for calculating body fat percentage in males. Our app is hosted online and can be accessed from anywhere - all the user must do is take the relevant measurments, input the data, and click submit! The app will do the rest and provide the estimated body fat percentage as well as a dynamic plot of body fat over time.
 
-https://stevebachmeier.shinyapps.io/bodyFat/</small>
+https://stevebachmeier.shinyapps.io/maleBodyFat3Fold/</small>
 
 ![](demo-site.jpg)
 

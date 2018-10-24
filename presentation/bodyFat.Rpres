@@ -44,7 +44,7 @@ Solution
 
 <small>We've created a clean and simple-to-use solution for solving the ugly Jackson-Pollock 3-fold method for calculating body fat percentage in males. Our app is hosted online and can be accessed from anywhere - all the user must do is take the relevant measurments, input the data, and click submit! The app will do the rest and provide the estimated body fat percentage as well as a dynamic plot of body fat over time.
 
-https://stevebachmeier.shinyapps.io/bodyFat/</small>
+https://stevebachmeier.shinyapps.io/maleBodyFat3Fold/</small>
 
 ![](demo-site.jpg)
 
@@ -85,9 +85,12 @@ with(userInput, data.frame(date=date[1],
                            c3=pinchChest[3], a3=pinchAbs[3], t3=pinchThigh[3]))
 ```
 
-```{r, echo=F}
-plot(as.Date(bodyfat[,1]), bodyfat[,2])
-lines(as.Date(bodyfat[,1]), bodyfat[,2])
+```{r, echo=F, fig.width=20}
+library(ggplot2)
+ggplot(data=bodyfat, aes(date, as.numeric(bodyfat))) +
+  geom_point() + geom_line() + xlab("Date") + ylab("Body fat (%)")
+# plot(as.Date(bodyfat[,1]), bodyfat[,2])
+# lines(as.Date(bodyfat[,1]), bodyfat[,2])
 ```
 
 <small>Uh oh, it looks like the holiday season did some damage!</small>
